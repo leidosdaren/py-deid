@@ -31,16 +31,20 @@ Update the 'bucket-name.txt' file with the name of the artifact bucket.
 
 To build a Lambda layer that contains the function's runtime dependencies, run `1-build-layer.sh`.
 
-    $ ./2-build-layer.sh
+    $ ./1-build-layer.sh
 
 # Deploy
 To deploy the application, run `2-deploy.sh`.
 
-    $ ./3-deploy.sh
-    BUILD SUCCESSFUL in 1s
+    py-deid % ./2-deploy.sh
+
     Successfully packaged artifacts and wrote output template to file out.yml.
+    Execute the following command to deploy the packaged template
+    aws cloudformation deploy --template-file /py-deid/out.yml --stack-name <YOUR STACK NAME>
+
     Waiting for changeset to be created..
-    Successfully created/updated stack - deid-java
+    Waiting for stack create/update to complete
+    Successfully created/updated stack - py-deid
 
 This script uses AWS CloudFormation to deploy the Lambda functions and an IAM role. If the AWS CloudFormation stack that contains the resources already exists, the script updates it with any changes to the template or function code.
 
